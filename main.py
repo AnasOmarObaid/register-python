@@ -68,6 +68,10 @@ s2 = Student('karam', 30, 'male', Student.Laptop('hp', 'i5', '8'))
 s2.info()
 s2.laptop.info()
 
+s3 = Student('nes', 30, 'female', Student.Laptop('hp', 'i5', '8'))
+s3.info()
+s3.laptop.info()
+
 # sys.exit()
 # students = []
 # num = int(input('enter the number of student: '))
