@@ -31,6 +31,7 @@ class Student:
 
     def setLaptop(self, laptop):
         self.laptop = laptop
+        self.laptop.student = self
 
     def getLaptop(self):
         return self.laptop
@@ -59,17 +60,37 @@ class Student:
     class Laptop:
         student = ''
 
-        def __init__(self, brand, cpu, ram, student):
+        def __init__(self, brand, cpu, ram):
             self.brand = brand
             self.cpu = cpu
             self.ram = ram
+
+        def setStudent(self, student):
             self.student = student
+            self.student.laptop = self
+
+        def getStudent(self):
+            return self.student
+
+        def checkStudent(self):
+            if self.student == '':
+                return False
+            return True
 
         def info(self):
-            print(f'the brand is {self.brand} and cpu is {self.cpu}, ram is {self.ram}, this laptop belong to {self.student.getNme()}')
+            print(
+                f'the brand is {self.brand} and cpu is {self.cpu}, ram is {self.ram}')
+
 
 class Course:
     pass
+
+
+student = Student('anas', 23, 'male')
+laptop = Student.Laptop('msi', 'cor i7', 16)
+
+laptop.info()
+
 
 students = []
 
@@ -86,7 +107,7 @@ for i in range(num):
         brand = input('enter the brand: ')
         cpu = input('enter the type of cpu: ')
         ram = int(input('enter the number of ram: '))
-        student.setLaptop(Student.Laptop(brand, cpu, ram, student))
+        student.setLaptop(Student.Laptop(brand, cpu, ram))
     students.append(student)
     print('##########################################################################################')
 
@@ -94,3 +115,4 @@ for student in students:
     student.info()
     if student.checkLaptop():
         student.getLaptop().info()
+        print('this laptop belong to ', student.getNme())
