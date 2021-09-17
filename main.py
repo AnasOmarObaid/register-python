@@ -6,11 +6,10 @@ class Student:
     school = 'alnjar'
     laptop = ''
 
-    def __init__(self, name, age, gender, laptop):
+    def __init__(self, name, age, gender):
         self.name = name
         self.age = age
         self.gender = gender
-        self.laptop = laptop
 
     def getNme(self):
         return self.name
@@ -30,9 +29,20 @@ class Student:
     def getGender(self):
         return self.gender
 
+    def setLaptop(self, laptop):
+        self.laptop = laptop
+
+    def getLaptop(self):
+        return self.laptop
+
     def info(self):
         print(
             f'welcome {self.name} your gender is {self.gender}, age is {self.age}, your school is {self.school} ')
+
+    def checkLaptop(self):
+        if self.laptop == '':
+            return False
+        return True
 
     @classmethod
     def setCounter(cls):
@@ -47,43 +57,40 @@ class Student:
         print('this is student class.................')
 
     class Laptop:
-        def __init__(self, brand, cpu, ram):
+        student = ''
+
+        def __init__(self, brand, cpu, ram, student):
             self.brand = brand
             self.cpu = cpu
             self.ram = ram
+            self.student = student
 
         def info(self):
-            print(f'the brand is {self.brand} and cpu is {self.cpu}, ram is {self.ram}')
-
+            print(f'the brand is {self.brand} and cpu is {self.cpu}, ram is {self.ram}, this laptop belong to {self.student.getNme()}')
 
 class Course:
     pass
 
+students = []
 
-s = Student('anas', 19, 'male', Student.Laptop('msi', 'i7', '16'))
-s.info()
-s.laptop.info()
+num = int(input('enter the number of student: '))
 
-s2 = Student('karam', 30, 'male', Student.Laptop('hp', 'i5', '8'))
-s2.info()
-s2.laptop.info()
+for i in range(num):
+    name = input(f'enter the name of student {i + 1}) ')
+    age = int(input(f'enter the age of student {i + 1}) '))
+    gender = input(f'enter the gender of student {i + 1}) ')
+    student = Student(name, age, gender)
+    Student.setCounter()
+    ask = input('###### do you want add laptop from this student? answer y or y ######: ')
+    if ask.lower() == 'yes' or ask.lower() == 'y':
+        brand = input('enter the brand: ')
+        cpu = input('enter the type of cpu: ')
+        ram = int(input('enter the number of ram: '))
+        student.setLaptop(Student.Laptop(brand, cpu, ram, student))
+    students.append(student)
+    print('##########################################################################################')
 
-s3 = Student('nes', 30, 'female', Student.Laptop('hp', 'i5', '8'))
-s3.info()
-s3.laptop.info()
-
-# sys.exit()
-# students = []
-# num = int(input('enter the number of student: '))
-#
-# for i in range(num):
-#     name = input(f'enter the name of student{i + 1}) ')
-#     age = int(input(f'enter the age of student{i + 1}) '))
-#     gender = input(f'enter the gender of student{i + 1}) ')
-#     student = Student(name, age, gender)
-#     Student.setCounter()
-#     students.append(student)
-#     print('##########################################################################################')
-#
-# for student in students:
-#     student.info()
+for student in students:
+    student.info()
+    if student.checkLaptop():
+        student.getLaptop().info()
