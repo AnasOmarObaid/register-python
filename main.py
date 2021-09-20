@@ -1,5 +1,5 @@
 class Person:
-    school = 'al-aqsa'
+    school = 'al-esra'
     laptop = ''
 
     def __init__(self, name, age, gender, pid):
