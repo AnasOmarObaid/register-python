@@ -1,4 +1,6 @@
-class Person:
+from abc import ABC, abstractmethod
+
+class Person(ABC):
     school = 'al-esra'
     laptop = ''
 
@@ -7,6 +9,50 @@ class Person:
         self.age = age
         self.gender = gender
         self.pid = pid
+
+    @abstractmethod
+    def setName(self, name):
+        pass
+
+    @abstractmethod
+    def getName(self):
+        pass
+
+    @abstractmethod
+    def setAge(self, age):
+        pass
+
+    @abstractmethod
+    def getAge(self):
+        pass
+
+    @abstractmethod
+    def setGender(self, gender):
+        pass
+
+    @abstractmethod
+    def getGender(self):
+        pass
+
+    @abstractmethod
+    def setPid(self, pid):
+        pass
+
+    @abstractmethod
+    def getPid(self):
+        pass
+
+    @abstractmethod
+    def info(self):
+        pass
+
+
+class Student(Person):
+
+    def __init__(self, name, age, gender, pid, course, grade):
+        super().__init__(name, age, gender, pid)
+        self.course = course
+        self.grade = grade
 
     def setName(self, name):
         self.name = name
@@ -31,19 +77,6 @@ class Person:
 
     def getPid(self):
         return self.pid
-
-    def info(self):
-        print(
-            f"the person name is {self.getName()}, the age is {self.getAge()}, the gender is {self.getGender()}, the person id is {self.getPid()}",
-            end=' ** ')
-
-
-class Student(Person):
-
-    def __init__(self, name, age, gender, pid, course, grade):
-        super().__init__(name, age, gender, pid)
-        self.course = course
-        self.grade = grade
 
     def setCourse(self, course):
         self.course = course
@@ -70,8 +103,8 @@ class Student(Person):
         return False
 
     def info(self):
-        super(Student, self).info()
-        print(f'your course {self.course}, your grade is {self.grade}, your '
+
+        print(f'your name is {self.getName()}, your age is {self.getAge()},your gender is {self.getGender()} your pid is {self.pid} ,your course {self.course}, your grade is {self.grade}, your '
               f'school is {self.school}')
         if self.laptop != '':
             self.laptop.info()
@@ -111,7 +144,7 @@ class Student(Person):
                 return True
             return False
 
-        def setStudent(self,student):
+        def setStudent(self, student):
             self.student = student
             self.student.laptop = self
 
@@ -129,6 +162,31 @@ class Master(Person):
         super().__init__(name, age, gender, pid)
         self.salary = salary
         self.course = course
+
+    def setName(self, name):
+        self.name = name
+
+    def getName(self):
+        return self.name
+
+    def setAge(self, age):
+        self.age = age
+
+    def getAge(self):
+        return self.age
+
+    def setGender(self, gender):
+        self.gender = gender
+
+    def getGender(self):
+        return self.gender
+
+    def setPid(self, pid):
+        self.pid = pid
+
+    def getPid(self):
+        return self.pid
+
 
     def setSalary(self, salary):
         self.salary = salary
@@ -153,8 +211,9 @@ class Master(Person):
         cls.salary_type = salary_type
 
     def info(self):
-        super(Master, self).info()
-        print(f'the salary is {self.getSalary()}{self.salary_type}, the courses is {self.getCourse()}')
+        print(f'your name is {self.getName()}, your age is {self.getAge()},your gender is {self.getGender()} your pid is {self.pid}, the salary is {self.getSalary()}{self.salary_type}, the courses is {self.getCourse()}')
+
+
 
 
 st = Student('anas', 20, 'male', 23221, 'python', 89)
